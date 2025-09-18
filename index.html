@@ -22,7 +22,7 @@
       height: 100%;
       background: url('miong.jpg') no-repeat center center fixed;
       background-size: cover;
-      opacity: 0.7;   /* 🔥 bisa ubah angka 0.1 - 1.0 */
+      opacity: 0.7; /* 🔥 bisa ubah transparansi */
       z-index: -1;
     }
 
@@ -51,50 +51,26 @@
       width: 120px;
     }
 
-    /* 🔥 Radio button biar sejajar */
-    .gender-group {
-      display: inline-block;
+    /* Radio button biar sejajar */
+    .radio-group {
+      display: flex;
+      gap: 15px;
+      align-items: center;
     }
 
-    .gender-group input,
-    .gender-group label {
-      display: inline-block;
-      margin-right: 10px;
-      width: auto;
-    }
-
-    /* 🔥 Media Query untuk layar kecil */
     @media (max-width: 600px) {
-      body {
-        padding: 10px;
-      }
-
       .form-box {
         width: 100%;
-        padding: 15px;
       }
-
       label {
         width: 100%;
-        margin-bottom: 5px;
         display: block;
-      }
-
-      input, select {
-        width: 100%;
-        box-sizing: border-box;
-      }
-
-      .gender-group {
-        display: flex;
-        gap: 15px;
       }
     }
   </style>
 </head>
 
 <body>
-  <!-- Gambar logo di tengah -->
   <img src="meow.jpg" alt="Logo Kucing">
 
   <h1>Data Diri</h1>
@@ -115,14 +91,12 @@
       </select><br><br>
 
       <label>Jenis Kelamin:</label>
-      <div class="gender-group">
+      <div class="radio-group">
         <input type="radio" id="laki" name="gender" value="L">
         <label for="laki">Laki-laki</label>
-
         <input type="radio" id="perempuan" name="gender" value="P">
         <label for="perempuan">Perempuan</label>
-      </div>
-      <br><br>
+      </div><br>
 
       <input type="submit" value="Kirim Data">
     </form>
@@ -139,15 +113,14 @@
           nim === "4222301092" &&
           prodi === "Teknik Rekayasa Robotika" &&
           jk && jk.value === "P") {
-        localStorage.setItem("nama", nama);
-        localStorage.setItem("nim", nim);
-        localStorage.setItem("prodi", prodi);
-        localStorage.setItem("gender", jk.value);
+        // Simpan tanda sukses ke localStorage
+        localStorage.setItem("akses", "true");
         window.location.href = "testii.html";
         return false;
       } else {
         alert("Account not found!");
-        document.querySelector("form").reset(); // 🔥 reset form kalau salah
+        // Reset form kalau salah
+        document.querySelector("form").reset();
         return false;
       }
     }
